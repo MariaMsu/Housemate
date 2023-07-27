@@ -1,6 +1,8 @@
 # Housemate
 
-Housemate is a centralized platform designed to help people engaged in communal
+Housemate is a centralized platform de
+
+signed to help people engaged in communal
 living resolve the mess with their household chores and expenses with easy-to-use
 scheduling and messaging system.
 
@@ -17,6 +19,16 @@ Our application uses docker. In order to launch the app you need to run docker-c
 docker compose build
 docker compose up
 ```
+
+## Screenshots
+
+![Landing_page.png](screenshots%2FLanding_page%0A.png)  
+![Login_Sign-up.png](screenshots%2FLogin_Sign-up%0A.png)  
+![Member_list.png](screenshots%2FMember_list%0A.png)  
+![Messaging_system.png](screenshots%2FMessaging_system.png)  
+![Task_system.png](screenshots%2FTask_system%0A.png)  
+![Bill_Tracker.png](screenshots%2FBill_Tracker.png)  
+![bill.png](screenshots%2Fbill.png)  
 
 ### Debug
 
@@ -36,7 +48,7 @@ To do that set environment variables like it is done in the [docker compose file
 
 ```bash
 cd backend
-sh env.sh
+source env.sh
 npm i  # initialize js packages
 npm start  # run the project
 ```

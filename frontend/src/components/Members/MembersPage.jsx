@@ -36,9 +36,8 @@ function MembersPage() {
 
     const handleDeleteMember = async (event, memberId) => {
         event.preventDefault();  // prevent reload
-        let response;
         try {
-            response = await router_auth.request({
+            await router_auth.request({
                 method: 'DELETE',
                 url: ApiDeleteSpaceMemberSafe,
                 headers: {'content-type': 'application/json',},
@@ -62,36 +61,38 @@ function MembersPage() {
         }
     }
 
+    const membersSystemPart = (
+        <SMessageMain>
+            <Typography variant="h6">Space members:</Typography>
+            <br/>
+            <List>
+                {members.map((r) =>
+                    <ListItem key={getSafe(r, "_id")}>
+                        <ListItemText>
+                            <ListItemIcon>
+                                {getSafe(r, 'isAdmin') && <StarBorder/>}
+                            </ListItemIcon>
+                            {getSafe(r, "userName")}
+                            {isYou(getSafe(r, "_id"))}
+                            , email: {getSafe(r, "userEmail")}
+                        </ListItemText>
+
+                        {(!getSafe(r, 'isAdmin')) &&
+                            <Button variant="contained"
+                                    onClick={(event) => handleDeleteMember(event, getSafe(r, "_id"))}>
+                                Delete member
+                            </Button>
+                        }
+                    </ListItem>
+                )}
+            </List>
+        </SMessageMain>
+    )
+
     return (
         <SLayout>
             <Sidebar/>
-            <SMessageMain>
-                <Typography variant="h6">Space members:</Typography>
-                <br/>
-
-                <List>
-                    {members.map((r) =>
-                        <ListItem key={getSafe(r, "_id")}>
-                            <ListItemText>
-                                <ListItemIcon>
-                                    {getSafe(r, 'isAdmin') && <StarBorder/>}
-                                </ListItemIcon>
-                                {getSafe(r, "userName")}
-                                {isYou(getSafe(r, "_id"))}
-                                , email: {getSafe(r, "userEmail")}
-                            </ListItemText>
-
-                            {(!getSafe(r, 'isAdmin')) &&
-                                <Button variant="contained"
-                                        onClick={(event) => handleDeleteMember(event, getSafe(r, "_id"))}>
-                                    Delete member
-                                </Button>
-                            }
-                        </ListItem>
-                    )}
-                </List>
-
-            </SMessageMain>
+            {(localStorage.hasOwnProperty("spaceId")) ? membersSystemPart : "Create, join or select a space"}
         </SLayout>
     )
 }

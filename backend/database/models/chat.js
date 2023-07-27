@@ -7,6 +7,7 @@ const ChatSchema = new mongoose.Schema({
     chatName: {
         type: String,
         required: true,
+        maxLength: 32,
     },
     chatPicture: {
         type: String,  // HEX colour

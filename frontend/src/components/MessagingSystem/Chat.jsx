@@ -119,7 +119,7 @@ function Chat({chatId, onChatsChanged}) {
                     </Typography>
                     <br/>
 
-                    <Typography variant="body1" sx={{display: 'inline'}} component="span">
+                    <Typography variant="body1" sx={{display: 'inline', wordWrap: "break-word" }} component="span">
                         {getSafe(message, "messageText")}
                     </Typography>
 

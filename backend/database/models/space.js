@@ -7,6 +7,7 @@ const SpaceSchema = new mongoose.Schema({
     spaceName: {
         type: String,
         required: true,
+        maxLength: 32,
     },
 
     spaceMembers: [
